@@ -16,12 +16,22 @@ function dragLeave(e) {
 
 function drop(e) {
   e.preventDefault();
+
   e.target.style.background = ''; // 내려 놓은 라인(div)의 색을 원래대로 되돌린다.
+
   const id = event.dataTransfer.getData('list'); // 드래그할 때 저장했던 엘리먼트의 아이디를 가져온다.
   const list = document.getElementById(id);
+
   list.nextElementSibling.remove(); // 옮기기 전 리스트의 아래쪽 라인(div) 역할을 했던 엘리먼트를 삭제한다.
+
   e.target.after(list); // 내려 놓은 라인(div) 다음에 리스트가 오게 한다.
-  list.after(document.createElement('div')); // 리스트 다음에 새로운 라인(div)을 추가한다.
+
+  const div = document.createElement('div');
+  div.addEventListener('drop', drop);
+  div.addEventListener('dragover', allowDrop);
+  div.addEventListener('dragenter', dragEnter);
+  div.addEventListener('dragleave', dragLeave);
+  list.after(div); // 리스트 다음에 새로운 라인(div)을 추가한다.
 }
 
 const lis = document.getElementsByTagName('li');
