@@ -4,7 +4,6 @@ function allowDrop(e) {
 
 function drag(e) {
   e.dataTransfer.setData('list', e.target.id);
-  console.log(e.target.id);
 }
 
 function dragEnter(e) {
@@ -28,4 +27,12 @@ function drop(e) {
 const lis = document.getElementsByTagName('li');
 for (let i = 0; i < lis.length; i++) {
   lis[i].addEventListener('dragstart', drag);
+}
+
+const divs = document.getElementsByTagName('div');
+for (let i = 0; i < divs.length; i++) {
+  divs[i].addEventListener('drop', drop);
+  divs[i].addEventListener('dragover', allowDrop);
+  divs[i].addEventListener('dragenter', dragEnter);
+  divs[i].addEventListener('dragleave', dragLeave);
 }
