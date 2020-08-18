@@ -35,14 +35,12 @@ function drop(e) {
 }
 
 const lis = document.getElementsByTagName('li');
-for (let i = 0; i < lis.length; i++) {
-  lis[i].addEventListener('dragstart', drag);
-}
+[...lis].forEach((li) => li.addEventListener('dragstart', drag));
 
 const divs = document.getElementsByTagName('div');
-for (let i = 0; i < divs.length; i++) {
-  divs[i].addEventListener('drop', drop);
-  divs[i].addEventListener('dragover', allowDrop);
-  divs[i].addEventListener('dragenter', dragEnter);
-  divs[i].addEventListener('dragleave', dragLeave);
-}
+[...divs].forEach((div) => {
+  div.addEventListener('drop', drop);
+  div.addEventListener('dragover', allowDrop);
+  div.addEventListener('dragenter', dragEnter);
+  div.addEventListener('dragleave', dragLeave);
+});
