@@ -1,0 +1,33 @@
+li {
+  list-style: none;
+}
+
+div {
+  background-color: aliceblue;
+  width: 20rem;
+  height: 1rem;
+}
+
+#plum {
+  background-color: plum;
+  width: 20rem;
+  height: 5rem;
+}
+
+#skyblue {
+  background-color: skyblue;
+  width: 20rem;
+  height: 5rem;
+}
+
+#dodgerblue {
+  background-color: dodgerblue;
+  width: 20rem;
+  height: 5rem;
+}
+
+#steelblue {
+  background-color: royalblue;
+  width: 20rem;
+  height: 5rem;
+}
