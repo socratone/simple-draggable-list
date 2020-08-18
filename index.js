@@ -4,6 +4,7 @@ function allowDrop(e) {
 
 function drag(e) {
   e.dataTransfer.setData('list', e.target.id);
+  console.log(e.target.id);
 }
 
 function dragEnter(e) {
@@ -22,4 +23,9 @@ function drop(e) {
   list.nextElementSibling.remove(); // 옮기기 전 리스트의 아래쪽 라인(div) 역할을 했던 엘리먼트를 삭제한다.
   e.target.after(list); // 내려 놓은 라인(div) 다음에 리스트가 오게 한다.
   list.after(document.createElement('div')); // 리스트 다음에 새로운 라인(div)을 추가한다.
+}
+
+const lis = document.getElementsByTagName('li');
+for (let i = 0; i < lis.length; i++) {
+  lis[i].addEventListener('dragstart', drag);
 }
