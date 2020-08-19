@@ -4,10 +4,26 @@ li {
   height: 5rem;
 }
 
-div {
-  background-color: aliceblue;
+.line {
+  position: relative;
   width: 20rem;
   height: 1rem;
+}
+
+.drop-area {
+  position: absolute;
+  /* 드롭 영역 표시를 위한 속성 */
+  /* background-color: rgba(0, 0, 0, 0.246); */
+  width: 20rem;
+  height: 1rem;
+  top: 0rem;
+}
+
+.expand {
+  height: 5rem;
+  top: -2rem;
+  /* 드롭 영역 표시를 위한 속성 */
+  /* background-color: rgba(0, 0, 0, 0.274); */
 }
 
 #plum {
