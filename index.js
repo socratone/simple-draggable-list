@@ -6,10 +6,12 @@ const DATA = [
   { id: 5, title: '포트폴리오3', route: '/portfolio3' },
 ];
 
-const SELECTED_LINE_COLOR = 'black';
+const HOVER_LINE_COLOR = 'black';
+const DRAGGED_ELEMENT_COLOR = 'gray';
 
 function dragStart(e) {
   e.dataTransfer.setData('dragged', e.target.id); // 드래그 할 때 dragged라는 이름으로 저장
+  e.target.style.background = DRAGGED_ELEMENT_COLOR;
   setTimeout(() => {
     const dropAreas = document.getElementsByClassName('drop-area');
     [...dropAreas].forEach((area) => {
@@ -18,7 +20,8 @@ function dragStart(e) {
   }, 0);
 }
 
-function dragEnd() {
+function dragEnd(e) {
+  e.target.style.background = '';
   const dropAreas = document.getElementsByClassName('drop-area');
   [...dropAreas].forEach((area) => {
     area.classList.remove('expand');
@@ -30,7 +33,7 @@ function allowDrop(e) {
 }
 
 function dragEnter(e) {
-  e.target.parentNode.style.background = SELECTED_LINE_COLOR;
+  e.target.parentNode.style.background = HOVER_LINE_COLOR;
 }
 
 function dragLeave(e) {
