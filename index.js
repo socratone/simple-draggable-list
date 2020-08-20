@@ -54,14 +54,14 @@ function drop(e) {
 }
 
 function createDraggableElement(id, title) {
-  const li = document.createElement('li');
-  li.id = id.toString();
-  li.classList.add('draggable-element');
-  li.addEventListener('dragstart', dragStart);
-  li.addEventListener('dragend', dragEnd);
-  li.draggable = 'true';
-  li.innerText = title;
-  return li;
+  const div = document.createElement('div');
+  div.id = 'draggable-element-' + id;
+  div.classList.add('draggable-element');
+  div.addEventListener('dragstart', dragStart);
+  div.addEventListener('dragend', dragEnd);
+  div.draggable = 'true';
+  div.innerText = title;
+  return div;
 }
 
 function createLineElement() {
