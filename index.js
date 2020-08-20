@@ -1,13 +1,8 @@
-const dropAreas = document.getElementsByClassName('drop-area');
-
-function allowDrop(e) {
-  e.preventDefault();
-}
-
 function dragStart(e) {
   e.dataTransfer.setData('dragged', e.target.id); // 드래그 할 때 dragged라는 이름으로 저장
   // 드래그 할 때 expand 속성을 적용
   setTimeout(() => {
+    const dropAreas = document.getElementsByClassName('drop-area');
     [...dropAreas].forEach((area) => {
       area.classList.add('expand');
     });
@@ -15,10 +10,14 @@ function dragStart(e) {
 }
 
 function dragEnd() {
-  // 드래그가 끝나면 expand 속성을 없앰
+  const dropAreas = document.getElementsByClassName('drop-area');
   [...dropAreas].forEach((area) => {
     area.classList.remove('expand');
   });
+}
+
+function allowDrop(e) {
+  e.preventDefault();
 }
 
 function dragEnter(e) {
@@ -66,6 +65,7 @@ function addEventToAll() {
     li.addEventListener('dragend', dragEnd);
   });
 
+  const dropAreas = document.getElementsByClassName('drop-area');
   [...dropAreas].forEach((area) => {
     area.addEventListener('drop', drop);
     area.addEventListener('dragover', allowDrop);
