@@ -1,10 +1,19 @@
+const DATA = [
+  { id: 1, title: '홈', route: '/' },
+  { id: 2, title: '프로필', route: '/profile' },
+  { id: 3, title: '포트폴리오1', route: '/portfolio1' },
+  { id: 4, title: '포트폴리오2', route: '/portfolio2' },
+  { id: 5, title: '포트폴리오3', route: '/portfolio3' },
+];
+
+const SELECTED_LINE_COLOR = 'black';
+
 function dragStart(e) {
   e.dataTransfer.setData('dragged', e.target.id); // 드래그 할 때 dragged라는 이름으로 저장
-  // 드래그 할 때 expand 속성을 적용
   setTimeout(() => {
     const dropAreas = document.getElementsByClassName('drop-area');
     [...dropAreas].forEach((area) => {
-      area.classList.add('expand');
+      area.classList.add('expand'); // 드래그 할 때 expand 속성을 적용
     });
   }, 0);
 }
@@ -21,7 +30,7 @@ function allowDrop(e) {
 }
 
 function dragEnter(e) {
-  e.target.parentNode.style.background = 'red';
+  e.target.parentNode.style.background = SELECTED_LINE_COLOR;
 }
 
 function dragLeave(e) {
@@ -44,22 +53,13 @@ function drop(e) {
   dragged.after(newLine); // dragged 다음에 새로운 라인(div)을 추가한다.
 }
 
-let count = 0; // TODO: 전역 변수 삭제
-function createDraggableElement() {
+function createDraggableElement(id, title) {
   const li = document.createElement('li');
-  li.id = count.toString();
+  li.id = id.toString();
   li.addEventListener('dragstart', dragStart);
   li.addEventListener('dragend', dragEnd);
   li.draggable = 'true';
-
-  if (count % 3 === 0) {
-    li.style.backgroundColor = 'skyblue';
-  } else if (count % 3 === 1) {
-    li.style.backgroundColor = 'dodgerblue';
-  } else if (count % 3 === 2) {
-    li.style.backgroundColor = 'royalblue';
-  }
-  count++;
+  li.innerText = title;
   return li;
 }
 
@@ -77,17 +77,17 @@ function createLineElement() {
   return line;
 }
 
-function createNavChildren(count) {
+function createNavChildren(DATA) {
   const nav = document.getElementById('nav');
-  for (let i = 1; i <= count; i++) {
+  for (let i = 0; i < DATA.length; i++) {
     nav.appendChild(createLineElement());
-    nav.appendChild(createDraggableElement());
+    nav.appendChild(createDraggableElement(DATA[i].id, DATA[i].title));
   }
   nav.appendChild(createLineElement());
 }
 
 function init() {
-  createNavChildren(7);
+  createNavChildren(DATA);
 }
 
 init();
