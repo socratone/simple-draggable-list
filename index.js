@@ -78,17 +78,17 @@ function createLineElement() {
   return line;
 }
 
-function createNavChildren(DATA) {
-  const nav = document.getElementById('nav');
+function createSectionChildren(DATA) {
+  const section = document.getElementById('section');
   for (let i = 0; i < DATA.length; i++) {
-    nav.appendChild(createLineElement());
-    nav.appendChild(createDraggableElement(DATA[i].id, DATA[i].title));
+    section.appendChild(createLineElement());
+    section.appendChild(createDraggableElement(DATA[i].id, DATA[i].title));
   }
-  nav.appendChild(createLineElement());
+  section.appendChild(createLineElement());
 }
 
 function init() {
-  createNavChildren(DATA);
+  createSectionChildren(DATA);
 }
 
 init();
