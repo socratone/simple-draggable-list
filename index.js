@@ -56,6 +56,7 @@ function drop(e) {
 function createDraggableElement(id, title) {
   const li = document.createElement('li');
   li.id = id.toString();
+  li.classList.add('draggable-element');
   li.addEventListener('dragstart', dragStart);
   li.addEventListener('dragend', dragEnd);
   li.draggable = 'true';
@@ -65,7 +66,7 @@ function createDraggableElement(id, title) {
 
 function createLineElement() {
   const line = document.createElement('div');
-  line.classList.add('line');
+  line.classList.add('line-element');
   const newDropArea = document.createElement('div');
   newDropArea.classList.add('drop-area');
   line.appendChild(newDropArea);

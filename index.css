@@ -1,4 +1,4 @@
-li {
+.draggable-element {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,7 +10,7 @@ li {
   background-color: dodgerblue;
 }
 
-.line {
+.line-element {
   position: relative;
   width: 20rem;
   height: 1rem;
