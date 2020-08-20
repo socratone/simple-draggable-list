@@ -22,7 +22,7 @@ function dragEnd() {
 }
 
 function dragEnter(e) {
-  e.target.parentNode.style.background = 'coral';
+  e.target.parentNode.style.background = 'red';
 }
 
 function dragLeave(e) {
@@ -59,7 +59,7 @@ function createLine() {
   return line;
 }
 
-function init() {
+function addEventToAll() {
   const lis = document.getElementsByTagName('li');
   [...lis].forEach((li) => {
     li.addEventListener('dragstart', dragStart);
@@ -72,6 +72,10 @@ function init() {
     area.addEventListener('dragenter', dragEnter);
     area.addEventListener('dragleave', dragLeave);
   });
+}
+
+function init() {
+  addEventToAll();
 }
 
 init();
