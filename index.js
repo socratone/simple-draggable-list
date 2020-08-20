@@ -1,9 +1,9 @@
 const DATA = [
-  { id: 1, title: '홈', route: '/' },
-  { id: 2, title: '프로필', route: '/profile' },
-  { id: 3, title: '포트폴리오1', route: '/portfolio1' },
-  { id: 4, title: '포트폴리오2', route: '/portfolio2' },
-  { id: 5, title: '포트폴리오3', route: '/portfolio3' },
+  { id: 1, title: '홈' },
+  { id: 2, title: '프로필' },
+  { id: 3, title: '포트폴리오1' },
+  { id: 4, title: '포트폴리오2' },
+  { id: 5, title: '포트폴리오3' },
 ];
 
 const HOVER_LINE_COLOR = 'black';
