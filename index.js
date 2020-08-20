@@ -40,11 +40,30 @@ function drop(e) {
   const line = e.target.parentNode;
   line.after(dragged); // 내려 놓은 drop-area의 부모인 line 다음에 dragged가 오게 한다.
 
-  const newLine = createLine();
+  const newLine = createLineElement();
   dragged.after(newLine); // dragged 다음에 새로운 라인(div)을 추가한다.
 }
 
-function createLine() {
+let count = 0; // TODO: 전역 변수 삭제
+function createDraggableElement() {
+  const li = document.createElement('li');
+  li.id = count.toString();
+  li.addEventListener('dragstart', dragStart);
+  li.addEventListener('dragend', dragEnd);
+  li.draggable = 'true';
+
+  if (count % 3 === 0) {
+    li.style.backgroundColor = 'skyblue';
+  } else if (count % 3 === 1) {
+    li.style.backgroundColor = 'dodgerblue';
+  } else if (count % 3 === 2) {
+    li.style.backgroundColor = 'royalblue';
+  }
+  count++;
+  return li;
+}
+
+function createLineElement() {
   const line = document.createElement('div');
   line.classList.add('line');
   const newDropArea = document.createElement('div');
@@ -58,24 +77,17 @@ function createLine() {
   return line;
 }
 
-function addEventToAll() {
-  const lis = document.getElementsByTagName('li');
-  [...lis].forEach((li) => {
-    li.addEventListener('dragstart', dragStart);
-    li.addEventListener('dragend', dragEnd);
-  });
-
-  const dropAreas = document.getElementsByClassName('drop-area');
-  [...dropAreas].forEach((area) => {
-    area.addEventListener('drop', drop);
-    area.addEventListener('dragover', allowDrop);
-    area.addEventListener('dragenter', dragEnter);
-    area.addEventListener('dragleave', dragLeave);
-  });
+function createNavChildren(count) {
+  const nav = document.getElementById('nav');
+  for (let i = 1; i <= count; i++) {
+    nav.appendChild(createLineElement());
+    nav.appendChild(createDraggableElement());
+  }
+  nav.appendChild(createLineElement());
 }
 
 function init() {
-  addEventToAll();
+  createNavChildren(7);
 }
 
 init();
