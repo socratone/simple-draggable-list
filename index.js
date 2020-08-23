@@ -56,7 +56,7 @@ function drop(e) {
   dragged.after(newLine); // dragged 다음에 새로운 라인(div)을 추가한다.
 }
 
-function createDraggableElement(id, title) {
+function createDraggableElement({ id, title }) {
   const div = document.createElement('div');
   div.id = 'draggable-element-' + id;
   div.classList.add('draggable-element');
@@ -72,7 +72,7 @@ function createLineElement() {
   line.classList.add('line-element');
   const newDropArea = document.createElement('div');
   newDropArea.classList.add('drop-area');
-  line.appendChild(newDropArea);
+  line.append(newDropArea);
 
   newDropArea.addEventListener('drop', drop);
   newDropArea.addEventListener('dragover', allowDrop);
@@ -84,10 +84,10 @@ function createLineElement() {
 function createSectionChildren(DATA) {
   const section = document.getElementById('section');
   for (let i = 0; i < DATA.length; i++) {
-    section.appendChild(createLineElement());
-    section.appendChild(createDraggableElement(DATA[i].id, DATA[i].title));
+    section.append(createLineElement());
+    section.append(createDraggableElement(DATA[i]));
   }
-  section.appendChild(createLineElement());
+  section.append(createLineElement());
 }
 
 function init() {
