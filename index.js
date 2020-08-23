@@ -9,23 +9,24 @@ const DATA = [
 const HOVER_LINE_COLOR = 'black';
 const DRAGGED_ELEMENT_COLOR = 'gray';
 
+function toggleExpandToDropAreas(toggle) {
+  const dropAreas = document.getElementsByClassName('drop-area');
+  [...dropAreas].forEach((area) => {
+    area.classList[toggle]('expand');
+  });
+}
+
 function dragStart(e) {
   e.dataTransfer.setData('dragged', e.target.id); // 드래그 할 때 dragged라는 이름으로 저장
   e.target.style.background = DRAGGED_ELEMENT_COLOR;
   setTimeout(() => {
-    const dropAreas = document.getElementsByClassName('drop-area');
-    [...dropAreas].forEach((area) => {
-      area.classList.add('expand'); // 드래그 할 때 expand 속성을 적용
-    });
+    toggleExpandToDropAreas('add');
   }, 0);
 }
 
 function dragEnd(e) {
   e.target.style.background = '';
-  const dropAreas = document.getElementsByClassName('drop-area');
-  [...dropAreas].forEach((area) => {
-    area.classList.remove('expand');
-  });
+  toggleExpandToDropAreas('remove');
 }
 
 function allowDrop(e) {
