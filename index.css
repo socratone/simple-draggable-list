@@ -10,6 +10,10 @@
   cursor: grab;
 }
 
+.draggable-element:active {
+  cursor: grabbing;
+}
+
 .line-element {
   position: relative;
   width: 20rem;
