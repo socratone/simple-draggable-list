@@ -84,10 +84,10 @@ function createLineElement() {
 
 function createSectionChildren(DATA) {
   const section = document.getElementById('section');
-  for (let i = 0; i < DATA.length; i++) {
+  DATA.forEach(data => {
     section.append(createLineElement());
-    section.append(createDraggableElement(DATA[i]));
-  }
+    section.append(createDraggableElement(data));
+  })
   section.append(createLineElement());
 }
 
